@@ -1,5 +1,6 @@
 let table;
-let filtrati = [];
+let col0Arr = []; //numeri filtrati nella prima colonna
+let col1Arr = []; //numeri filtrati nella seconda colonna
 
 function preload() {
   table = loadTable("dataset.csv", "csv", "header");
@@ -15,15 +16,23 @@ function setup() {
     
     // applica le regole
     if (col0 % 5 === 0 && Number.isInteger(col1) && col1 >= 10 && col1 < 50) {
-      filtrati.push([col0, col1]);
+      col0Arr.push(col0); //la colonna 0 nel primo array
+      col1Arr.push(col1); //la colonna 1 nel secondo array
     }
   }
 
-  console.log("righe filtrate:", filtrati); //mostra il numero di righe che soddisfano le condizioni
+  //calcolo media colonna 1
+  let sum = 0;
+  for (let i = 0; i < col0Arr.length; i++) {
+    sum += col0Arr[i];
+  }
+  let average = sum / col0Arr.length;
+  print("average:", average); 
+
 }
 
 function draw() {
   background(220);
   textSize(16);
- // text(`righe filtrate: ${filtrati.length}`, 10, 30);
+
 }
