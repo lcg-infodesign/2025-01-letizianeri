@@ -25,9 +25,11 @@ function setup() {
   }
 
 // estrarre i valori numerici delle colonne
-let col0Values = filteredRows.map(row => Number(row.col0));
-let col1Values = filteredRows.map(row => Number(row.col1));
-let col2Values = filteredRows.map(row => row.col2);
+let col0Values = filteredRows.map(row => Number(row.column0));
+let col1Values = filteredRows.map(row => Number(row.column1));
+let col2Values = filteredRows.map(row => Number(row.column2));
+let col3Values = filteredRows.map(row => Number(row.column3));
+let col4Values = filteredRows.map(row => Number(row.column4));
 
 
 // 1. calcolo media colonna 0
@@ -42,11 +44,25 @@ let col2Values = filteredRows.map(row => row.col2);
   print("std col1:", std1);
 
 
-//3. calcolo moda colonna 2
+// 3. calcolo moda colonna 2
 let mode2 = calcMode(col2Values);
 print("mode col2:", mode2);
 
-}
+
+// 4. calcolo mediana colonna 3
+let median3 = calcMedian(col3Values);
+print("median col3:", median3);
+
+
+// 5. calcolo media e deviazione standard colonna 4
+  let average4 = calcAvg(col4Values);
+  let std4 = calcStD(col4Values);
+  print("average col4:", average4);
+  print("std col4:", std4);
+
+}               // CHIUSURA DI SETUP
+
+
 
 // funzione per calcolare la media di un array
 function calcAvg(arr) {
@@ -98,6 +114,21 @@ function calcMode(arr) {
   // se c'è una sola moda restituisce il valore singolo
   if (mode.length === 1) return mode[0];
   return mode; // altrimenti ritorna un array di valori moda
+}
+
+//funzione per calcolare la mediana
+function calcMedian(arr) {
+  if (arr.length === 0) return 0; // se l'array vuoto restituisce 0
+  let sorted = arr.slice().sort((a, b) => a - b); // ordina senza modificare l'array originale
+  let middle = Math.floor(sorted.length / 2);
+
+  if (sorted.length % 2 === 0) {
+    // se c'è un numero pari di elementi calcola la media dei due valori centrali
+    return (sorted[middle - 1] + sorted[middle]) / 2;
+  } else {
+    // se i valori sono dispari restituisce l'elemento centrale
+    return sorted[middle];
+  }
 }
 
 
