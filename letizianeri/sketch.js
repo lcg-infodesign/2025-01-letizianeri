@@ -141,7 +141,7 @@ function drawAverageCol0() {
   cnvImg.style("height", "200px");
 }
 
-// std della colonna 1 - animazione
+// std della colonna 1 - animazione --> eseguito nel draw
 let currentDiameter = 0;  // diametro iniziale
 let targetDiameter;        // diametro finale (std1)
 let easing = 0.05;        // coefficiente easing
@@ -222,14 +222,12 @@ function drawFrequencyBubbles() {
 }
 
 
-
-
 function setup() {
-   // canvas principale dentro box2
+   // canvas principale dentro box2 per animazione cerchio
   let cnv = createCanvas(400,200);
   cnv.parent("box2"); // canvas principale nel div box2
   
-  // ciclo che si ripete su tutte le righe
+  // ciclo che si ripete su tutte le righe --> filtraggio
   for (let r = 0; r < table.getRowCount(); r++) {
     const col0 = table.getNum(r, 0); // colonna 0 come numero
     const col1 = table.getNum(r, 1); // colonna 1 come numero
@@ -244,8 +242,6 @@ function setup() {
     filteredRows.push(rowObj);
     }
   }
-
-// noLoop(); // esegui solo una volta (utile x il disegno)
 
 // estrarre i valori numerici delle colonne
 col0Values = filteredRows.map(row => Number(row.column0));
@@ -269,11 +265,8 @@ col4Values = filteredRows.map(row => Number(row.column4));
   print("average col1:", average1);
   print("std col1:", std1);
 
-  // creazione del graphics globale e impostazione diametro target
+  // impostazione diametro target
   targetDiameter = map(std1, 0, 50, 50, 180);
-
-  // disegna il grafico di std colonna 1
- // drawStd1Circle();
 
 
 // 3. calcolo moda colonna 2
@@ -331,12 +324,6 @@ function draw() {
   stroke("gold");
   strokeWeight(5);
   circle(width/2, height/2, currentDiameter);
-
-  /*// incremento con reset
-  currentDiameter += diameterIncrement;
-  if (currentDiameter > targetDiameter) {
-    currentDiameter = 0; // ricomincia da piccolo
-  }*/
 
   // etichetta di testo
   noStroke();
