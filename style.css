@@ -103,7 +103,7 @@ h1 {
 }
 
 #box6 {
-  background-color: rgb(140, 84, 142);
+  background-color: rgba(140, 84, 142, 0.575);
 }
 
 .flex-grid .box {
