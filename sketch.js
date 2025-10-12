@@ -104,7 +104,7 @@ function drawAverageCol0() {
   let minVal = Math.min(...col0Values);
 
   // zeroY verticale per valore 0
-  let zeroY = map(0, minVal, maxVal, topMargin, topMargin + chartHeight);
+  let zeroY = map(0, minVal, maxVal, topMargin + chartHeight, topMargin);
 
   // disegna le barre
   for (let i = 0; i < col0Values.length; i++) {
@@ -122,7 +122,7 @@ function drawAverageCol0() {
   }
 
   // linea orizzontale della media
-  let avgY = map(average0, minVal, maxVal, topMargin, topMargin + chartHeight);
+  let avgY = map(average0, minVal, maxVal, topMargin + chartHeight, topMargin);
   g.stroke("deeppink");
   g.strokeWeight(2);
   g.line(leftMargin, avgY, g.width - rightMargin, avgY);
